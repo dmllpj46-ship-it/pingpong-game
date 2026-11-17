@@ -6,6 +6,14 @@
 
 > **当前状态：v1 可玩。** 已实现第一视角、自研物理、CPU 预判对手、完整计分、三档难度、合成音效与落点提示。
 
+## 线上地址
+
+- **游戏**：https://pingpong-game-bi0.pages.dev/
+- **GitHub**：https://github.com/dmllpj46-ship-it/pingpong-game （public）
+
+Cloudflare Pages 项目名 `pingpong-game`，通过 `wrangler pages deploy dist --project-name=pingpong-game --branch=main` 直传。
+当前是 **CLI 直传**，不是 Git 集成：`git push` 不会自动重新部署，改完代码需重跑部署命令（先 `cp -r src vendor dist/` 等同步静态文件）。
+
 ---
 
 ## 技术选型（由 Jev 判定，2026-11-17）
