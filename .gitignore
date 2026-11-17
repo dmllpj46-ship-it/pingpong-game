@@ -1,0 +1,24 @@
+# 本地工具 / 会话数据
+.workbuddy-ai/
+.claude/
+*.log
+
+# 依赖与构建产物
+node_modules/
+dist/
+.wrangler/
+.wrangler-state/
+*.tsbuildinfo
+.cf-pages/
+
+# 环境与密钥
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini

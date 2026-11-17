@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PingPong 3D · 第一视角乒乓球</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%236ee7ff'/></svg>">
+  <link rel="stylesheet" href="./styles.css">
+  <!-- 本地 three.js，离线可用；想换 CDN 只改这里一行 -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- 抬头显示 -->
+  <div id="hud">
+    <div class="scoreboard">
+      <div class="side player">
+        <span class="label">你</span>
+        <span class="pts" id="pScore">0</span>
+        <span class="serve-dot on" id="serveDotP" title="发球方"></span>
+      </div>
+      <div class="colon">:</div>
+      <div class="side cpu">
+        <span class="serve-dot" id="serveDotC" title="发球方"></span>
+        <span class="pts" id="cScore">0</span>
+        <span class="label">CPU</span>
+      </div>
+    </div>
+
+    <div class="top-right">
+      <div class="badge" id="difficulty">普通</div>
+      <div class="badge subtle" id="fps">-- fps</div>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <div class="power-wrap" id="powerWrap">
+      <div class="power-label">挥拍</div>
+      <div class="power-track"><div class="power-fill" id="powerFill"></div></div>
+    </div>
+
+    <div class="controls-hint">
+      鼠标左右对准落点 · 单击发球 / 单击挥拍接球 · Esc 暂停
+    </div>
+  </div>
+
+  <!-- 开局菜单 -->
+  <div id="overlay" class="overlay">
+    <div class="panel">
+      <div class="eyebrow">FIRST-PERSON TABLE TENNIS</div>
+      <h1>PING PONG <span>3D</span></h1>
+      <p class="sub">站在球台这端，和会预判落点的 CPU 打一场。</p>
+
+      <div class="level-select">
+        <button class="level-btn" data-level="easy">简单</button>
+        <button class="level-btn active" data-level="normal">普通</button>
+        <button class="level-btn" data-level="hard">困难</button>
+      </div>
+
+      <button id="startBtn" class="primary">开始比赛</button>
+
+      <div class="howto">
+        <div><b>单击</b> 发球；球来时 <b>单击</b> 挥拍（点早了也没关系，拍子会自动咬住来球）</div>
+        <div><b>鼠标左右</b> 对准来球　<b>A / D</b> 微调</div>
+        <div><b>Esc</b> 暂停　<b>R</b> 重开</div>
+        <div class="tip">看到球往你这边飞就点一下 —— 不用掐时机，也不用对准。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 暂停 -->
+  <div id="pause" class="overlay hidden">
+    <div class="panel small">
+      <div class="eyebrow">PAUSED</div>
+      <h2>暂停中</h2>
+      <button id="resumeBtn" class="primary">继续比赛</button>
+      <button id="restartBtn" class="ghost">重新开局</button>
+      <div class="hint">也可以按 Esc 继续</div>
+    </div>
+  </div>
+
+  <!-- 结算 -->
+  <div id="result" class="overlay hidden"></div>
+
+  <pre id="debug" class="hidden"></pre>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
